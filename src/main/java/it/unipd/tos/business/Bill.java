@@ -9,10 +9,14 @@ public class Bill implements RestaurantBill {
 	
 	
 	public double getOrderPrice(List<MenuItem> itemsOrdered) throws RestaurantBillException {
-		double tot=0;
+		double tot=0.0;
 		
-		for(MenuItem i : itemsOrdered) {
-			tot+= i.getPrice();
+		if(itemsOrdered.size() > 20)
+			throw new RestaurantBillException("!!ERROR!! : Ordine superiore ai 20 elementi");
+		else {
+			for(MenuItem i : itemsOrdered) {
+				tot+= i.getPrice();
+			}
 		}
 		
 		return tot;

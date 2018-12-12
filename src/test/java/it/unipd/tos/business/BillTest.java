@@ -16,7 +16,7 @@ public class BillTest {
 
 	 //Tot somma (issue #1)
 	
-    @org.junit.Test
+    @Test
     public void TotalSimpleBillSomeItemsTest() {
         List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
         itemsOrdered.add(new MenuItem("Bigoli al torcio in salsa",MenuItem.alimenti.PRIMO_PIATTO, 10.5));
@@ -29,5 +29,23 @@ public class BillTest {
             e.getAvviso();
         }
     }
-
+    
+    //N elementi maggiore di 20
+    
+    @org.junit.Rule
+    public ExpectedException error= ExpectedException.none();
+    
+    @Test
+    public void ExcededTwoentyItems() throws RestaurantBillException{
+    	error.expect(RestaurantBillException.class);
+        error.expectMessage("!!ERROR!! : Ordine superiore ai 20 elementi");
+    	
+    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+    	for(int i=0; i<25 ; i++) {
+    		itemsOrdered.add(new MenuItem("Gorgonzola e speck" + i, MenuItem.alimenti.PIZZA, 6.5));
+    	}
+    	Bill bill= new Bill();
+    	double tot= bill.getOrderPrice(itemsOrdered);
+    }
+    
 }
