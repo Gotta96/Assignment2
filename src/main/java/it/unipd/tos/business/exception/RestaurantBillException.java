@@ -1,12 +1,12 @@
 package it.unipd.tos.business.exception;
 
 public class RestaurantBillException extends Throwable{
-	private String avviso;
+	private String message;
 
-    public String getAvviso() {
-        return avviso;
+    public String getMessage() {
+        return message;
     }
     public RestaurantBillException(String a) {
-        this.avviso = a;
+        this.message = a;
     }
 }

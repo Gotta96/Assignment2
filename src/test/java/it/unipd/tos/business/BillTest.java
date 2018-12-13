@@ -26,7 +26,7 @@ public class BillTest {
             double tot = bill.getOrderPrice(itemsOrdered);
             assertEquals(22.5, tot, 0.0);
         } catch (RestaurantBillException e) {
-            e.getAvviso();
+            e.getMessage();
         }
     }
     
@@ -45,7 +45,7 @@ public class BillTest {
     		itemsOrdered.add(new MenuItem("Gorgonzola e speck" + i, MenuItem.alimenti.PIZZA, 6.5));
     	}
     	Bill bill= new Bill();
-    	double tot= bill.getOrderPrice(itemsOrdered);
+    	bill.getOrderPrice(itemsOrdered);
     }
     
 }
