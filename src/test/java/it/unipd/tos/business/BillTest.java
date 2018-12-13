@@ -30,7 +30,7 @@ public class BillTest {
         }
     }
     
-    //N elementi maggiore di 20 (issue #2)
+    //N elementi maggiore di 20 (issue #4)
     
     @org.junit.Rule
     public ExpectedException error= ExpectedException.none();
