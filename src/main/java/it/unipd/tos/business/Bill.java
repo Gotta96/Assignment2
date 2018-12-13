@@ -29,7 +29,7 @@ public class Bill implements RestaurantBill {
         if(itemsOrdered.size() > 10) {
             int pizzasCounter=0;
             for(MenuItem i : itemsOrdered) {
-                if(i.getType() == MenuItem.alimenti.PIZZA) {
+                if(i.getitemsType() == MenuItem.alimenti.PIZZA) {
                     pizzasCounter++;
                 }
                 if(i.getPrice() < minprice) {

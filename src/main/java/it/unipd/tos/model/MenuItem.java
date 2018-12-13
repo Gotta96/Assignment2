@@ -8,14 +8,14 @@ public class MenuItem {
 
     public enum alimenti { PIZZA, PRIMO_PIATTO }
 
-    private alimenti type;
+    private alimenti itemsType;
     private String name;
     private double price;
 
     public MenuItem(String no, alimenti al, double pr) 
     {
         this.name = no;
-        this.type = al;
+        this.itemsType = al;
         this.price = pr;
     }
 
@@ -24,9 +24,9 @@ public class MenuItem {
         return price;
     }
 
-    public alimenti getType()
+    public alimenti getitemsType()
     {
-        return type;
+        return itemsType;
     }
 
     public String getName()
