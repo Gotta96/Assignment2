@@ -14,8 +14,8 @@ import org.junit.Test;
 
 public class BillTest {
 
-	 //Tot somma (issue #1)
-	
+    //Tot somma (issue #1)
+
     @Test
     public void TotalSimpleBillSomeItemsTest() {
         List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
@@ -29,37 +29,37 @@ public class BillTest {
             e.getMessage();
         }
     }
-    
+
     //N elementi maggiore di 20 (issue #4)
-    
+
     @org.junit.Rule
     public ExpectedException error= ExpectedException.none();
-    
+
     @Test
     public void ExcededTwoentyItems() throws RestaurantBillException{
-    	error.expect(RestaurantBillException.class);
+        error.expect(RestaurantBillException.class);
         error.expectMessage("!!ERROR!! : Ordine superiore ai 20 elementi");
-    	
-    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
-    	for(int i=0; i<25 ; i++) {
-    		itemsOrdered.add(new MenuItem("Gorgonzola e speck" + i, MenuItem.alimenti.PIZZA, 6.5));
-    	}
-    	Bill bill= new Bill();
-    	bill.getOrderPrice(itemsOrdered);
+
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        for(int i=0; i<25 ; i++) {
+            itemsOrdered.add(new MenuItem("Gorgonzola e speck" + i, MenuItem.alimenti.PIZZA, 6.5));
+        }
+        Bill bill= new Bill();
+        bill.getOrderPrice(itemsOrdered);
     }
-    
+
     //Controllo e rimozione della pizza meno cara se n pizze > 10 (issue #2)
-    
+
     @Test
-    
+
     public void presentMinItemWhenCountGreaterTen() throws RestaurantBillException{
-    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
-    	for(int i=0; i<15 ; i++) {
-    		itemsOrdered.add(new MenuItem("Margherita" + i, MenuItem.alimenti.PIZZA, 4.0));
-    	}
-    	
-    	Bill bill = new Bill();
-        
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        for(int i=0; i<15 ; i++) {
+            itemsOrdered.add(new MenuItem("Margherita" + i, MenuItem.alimenti.PIZZA, 4.0));
+        }
+
+        Bill bill = new Bill();
+
         try 
         {
             assertEquals(56.0, bill.getOrderPrice(itemsOrdered), 0.0);
@@ -69,19 +69,19 @@ public class BillTest {
             e.getMessage();
         }
     }
-    
+
     //Controllo e rimozione del 5% dal totale se il totale > 100 € (issue #3)
-    
+
     @Test
-    
+
     public void saleOfFiveIfGreaterOneHundred() throws RestaurantBillException{
-    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
-    	for(int i=0; i<10 ; i++) {
-    		itemsOrdered.add(new MenuItem("Spaghetti alla busara" + i, MenuItem.alimenti.PIZZA, 15.0));
-    	}
-    	
-    	Bill bill = new Bill();
-        
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        for(int i=0; i<10 ; i++) {
+            itemsOrdered.add(new MenuItem("Spaghetti alla busara" + i, MenuItem.alimenti.PIZZA, 15.0));
+        }
+
+        Bill bill = new Bill();
+
         try 
         {
             assertEquals(142.5, bill.getOrderPrice(itemsOrdered), 0.0);
