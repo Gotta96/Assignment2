@@ -30,7 +30,7 @@ public class BillTest {
         }
     }
     
-    //N elementi maggiore di 20
+    //N elementi maggiore di 20 (issue #2)
     
     @org.junit.Rule
     public ExpectedException error= ExpectedException.none();
@@ -48,4 +48,25 @@ public class BillTest {
     	bill.getOrderPrice(itemsOrdered);
     }
     
+    //Controllo e rimozione della pizza meno cara (issue #2)
+    
+    @Test
+    
+    public void presentMinItemWhenCountGreaterTen() throws RestaurantBillException{
+    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+    	for(int i=0; i<15 ; i++) {
+    		itemsOrdered.add(new MenuItem("Margherita" + i, MenuItem.alimenti.PIZZA, 4.0));
+    	}
+    	
+    	Bill bill = new Bill();
+        
+        try 
+        {
+            assertEquals(56.0, bill.getOrderPrice(itemsOrdered), 0.0);
+        } 
+        catch (RestaurantBillException e) 
+        {
+            e.getMessage();
+        }
+    }
 }
