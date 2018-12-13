@@ -48,7 +48,7 @@ public class BillTest {
     	bill.getOrderPrice(itemsOrdered);
     }
     
-    //Controllo e rimozione della pizza meno cara (issue #2)
+    //Controllo e rimozione della pizza meno cara se n pizze > 10 (issue #2)
     
     @Test
     
@@ -63,6 +63,28 @@ public class BillTest {
         try 
         {
             assertEquals(56.0, bill.getOrderPrice(itemsOrdered), 0.0);
+        } 
+        catch (RestaurantBillException e) 
+        {
+            e.getMessage();
+        }
+    }
+    
+    //Controllo e rimozione del 5% dal totale se il totale > 100 € (issue #3)
+    
+    @Test
+    
+    public void saleOfFiveIfGreaterOneHundred() throws RestaurantBillException{
+    	List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+    	for(int i=0; i<10 ; i++) {
+    		itemsOrdered.add(new MenuItem("Spaghetti alla busara" + i, MenuItem.alimenti.PIZZA, 15.0));
+    	}
+    	
+    	Bill bill = new Bill();
+        
+        try 
+        {
+            assertEquals(142.5, bill.getOrderPrice(itemsOrdered), 0.0);
         } 
         catch (RestaurantBillException e) 
         {
